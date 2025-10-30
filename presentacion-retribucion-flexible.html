@@ -6,7 +6,7 @@
     <title>Retribució Flexible - Gelabert Castellví Assessors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,122 +15,195 @@
         }
 
         :root {
-            --primary-blue: #1e3a8a;
-            --secondary-blue: #3b82f6;
-            --accent-gold: #d97706;
-            --dark-gray: #1f2937;
-            --light-gray: #f3f4f6;
-            --white: #ffffff;
-            --success-green: #10b981;
-            --text-dark: #111827;
+            --blue-light: #60A5FA;
+            --blue-lighter: #93C5FD;
+            --blue-lightest: #BFDBFE;
+            --gray-light: #E5E7EB;
+            --gray-lighter: #F3F4F6;
+            --gray-lightest: #F9FAFB;
+            --white: #FFFFFF;
+            --text-dark: #1F2937;
+            --text-medium: #4B5563;
+            --success: #10B981;
+            --danger: #EF4444;
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--gray-lightest) 0%, var(--white) 100%);
             color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
+            overflow: hidden;
+            height: 100vh;
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .presentation-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .presentation-wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 2rem;
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 1600px;
+            height: 90vh;
+            max-height: 900px;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
         }
 
         .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             background: var(--white);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.6s ease-in-out;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 4rem 5rem;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 10;
         }
 
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+
+        /* Header de cada slide */
         .slide-header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
             text-align: center;
+            margin-bottom: 3rem;
         }
 
         .slide-header h1 {
-            font-size: 2.5rem;
+            font-size: 4rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-lighter));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
         }
 
         .slide-header h2 {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            color: var(--blue-light);
+            margin-bottom: 1rem;
         }
 
         .slide-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            font-weight: 500;
         }
 
-        .logo-section {
+        /* Slide 1: Portada */
+        #slide1 {
+            background: linear-gradient(135deg, var(--blue-lightest) 0%, var(--white) 100%);
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            margin-bottom: 2rem;
+        }
+
+        .company-logo {
+            margin-bottom: 3rem;
         }
 
         .company-name {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-blue);
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--blue-light);
+            letter-spacing: -2px;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         .company-tagline {
-            font-size: 1.2rem;
-            color: var(--secondary-blue);
+            font-size: 1.8rem;
+            color: var(--text-medium);
             font-weight: 600;
+            margin-bottom: 3rem;
         }
 
-        .content-section {
-            margin: 2rem 0;
+        .main-title {
+            font-size: 5.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-lighter));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
 
-        .two-column {
+        .subtitle {
+            font-size: 2rem;
+            color: var(--text-medium);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(96, 165, 250, 0.15);
+        }
+
+        /* Cards i contenidors */
+        .content-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            flex: 1;
+        }
+
+        .content-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin: 2rem 0;
         }
 
         .card {
-            background: var(--light-gray);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 5px solid var(--secondary-blue);
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--gray-light);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.2);
+            border-color: var(--blue-lighter);
         }
 
         .card h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--blue-light);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .card ul {
@@ -139,637 +212,834 @@
         }
 
         .card ul li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.75rem 0;
+            padding-left: 2rem;
             position: relative;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
         .card ul li:before {
             content: "✓";
             position: absolute;
             left: 0;
-            color: var(--success-green);
+            color: var(--blue-light);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
+        /* Highlight boxes */
         .highlight-box {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 5px solid var(--accent-gold);
-            margin: 1.5rem 0;
+            background: linear-gradient(135deg, var(--blue-lightest), var(--white));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--blue-light);
+            margin: 2rem 0;
         }
 
         .highlight-box h4 {
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
+            color: var(--blue-light);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
+        .highlight-box p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+
+        /* Benefits grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+            border-color: var(--blue-light);
+        }
+
+        .benefit-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            filter: grayscale(20%);
+        }
+
+        .benefit-card h4 {
+            font-size: 1.3rem;
+            color: var(--blue-light);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 1rem;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        /* Comparació nòmines */
         .nomina-comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 3rem;
             margin: 2rem 0;
         }
 
         .nomina-card {
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 3px solid var(--light-gray);
+            border: 3px solid var(--gray-light);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .nomina-card.with-flex {
-            border-color: var(--success-green);
+        .nomina-card.good {
+            border-color: var(--success);
             background: linear-gradient(to bottom, var(--white) 0%, #ecfdf5 100%);
         }
 
-        .nomina-card.without-flex {
-            border-color: #ef4444;
+        .nomina-card.bad {
+            border-color: var(--danger);
             background: linear-gradient(to bottom, var(--white) 0%, #fef2f2 100%);
         }
 
-        .nomina-header {
+        .nomina-header-card {
             text-align: center;
-            padding: 1rem;
-            border-radius: 10px;
+            padding: 1.5rem;
+            border-radius: 12px;
             margin-bottom: 1.5rem;
             color: var(--white);
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
 
-        .with-flex .nomina-header {
-            background: linear-gradient(135deg, #10b981, #059669);
+        .good .nomina-header-card {
+            background: linear-gradient(135deg, var(--success), #059669);
         }
 
-        .without-flex .nomina-header {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+        .bad .nomina-header-card {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
         }
 
         .nomina-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.75rem;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 1.1rem;
         }
 
         .nomina-row:last-child {
             border-bottom: none;
         }
 
-        .nomina-row.header-row {
-            background: var(--light-gray);
-            font-weight: 700;
+        .nomina-row.highlight {
+            background: var(--blue-lightest);
             border-radius: 8px;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
         }
 
-        .nomina-row.total-row {
-            background: var(--primary-blue);
+        .nomina-row.total {
+            background: var(--blue-light);
             color: var(--white);
             font-weight: 700;
-            font-size: 1.2rem;
-            border-radius: 8px;
+            font-size: 1.4rem;
+            border-radius: 10px;
             margin-top: 1rem;
         }
 
-        .nomina-row.salary-base {
-            background: #dbeafe;
-            font-weight: 600;
+        .nomina-row.exempt {
+            background: #d1fae5;
             border-radius: 5px;
         }
 
-        .nomina-row.deductions {
+        .nomina-row.deduction {
             background: #fee2e2;
+            border-radius: 5px;
         }
 
-        .savings-badge {
+        .savings-banner {
             text-align: center;
-            background: linear-gradient(135deg, var(--success-green), #059669);
+            background: linear-gradient(135deg, var(--success), #059669);
             color: var(--white);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            font-size: 1.5rem;
-            font-weight: 800;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .benefit-item {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .benefit-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .benefit-item h4 {
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .cta-section {
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            color: var(--white);
-            padding: 3rem;
-            border-radius: 15px;
-            margin-top: 3rem;
-        }
-
-        .cta-section h2 {
+            padding: 2rem;
+            border-radius: 20px;
             font-size: 2rem;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.3);
         }
 
-        .cta-button {
-            display: inline-block;
-            background: var(--accent-gold);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(217, 119, 6, 0.3);
+        /* Taula conceptes */
+        .table-container {
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
-        }
-
-        .concepts-table {
             background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .concepts-table th {
-            background: var(--primary-blue);
+        table th {
+            background: var(--blue-light);
             color: var(--white);
-            padding: 1rem;
+            padding: 1.25rem;
             text-align: left;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
-        .concepts-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e5e7eb;
+        table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 1.05rem;
         }
 
-        .concepts-table tr:last-child td {
+        table tr:last-child td {
             border-bottom: none;
         }
 
-        .concepts-table tr:hover {
-            background: var(--light-gray);
+        table tr:hover {
+            background: var(--gray-lightest);
         }
 
-        @media (max-width: 768px) {
-            .two-column,
-            .nomina-comparison,
-            .benefits-grid {
-                grid-template-columns: 1fr;
+        /* Process steps */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .step-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blue-light);
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .step-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--blue-lighter);
+            margin-bottom: 1rem;
+        }
+
+        .step-card h4 {
+            font-size: 1.4rem;
+            color: var(--blue-light);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .step-card p {
+            font-size: 1rem;
+            color: var(--text-medium);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-lighter));
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cta-item {
+            padding: 1.5rem;
+        }
+
+        .cta-item-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-item strong {
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--blue-light);
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Controls de navegació */
+        .nav-controls {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: var(--blue-light);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            border: none;
+            box-shadow: 0 5px 20px rgba(96, 165, 250, 0.3);
+        }
+
+        .nav-btn:hover {
+            background: var(--blue-lighter);
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            background: var(--gray-light);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Indicadors de slides */
+        .slide-indicators {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--blue-light);
+            width: 40px;
+            border-radius: 6px;
+        }
+
+        /* Scroll personalitzat per slides amb contingut llarg */
+        .slide-content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .slide-content-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide-content-scroll::-webkit-scrollbar-track {
+            background: var(--gray-lighter);
+            border-radius: 10px;
+        }
+
+        .slide-content-scroll::-webkit-scrollbar-thumb {
+            background: var(--blue-lighter);
+            border-radius: 10px;
+        }
+
+        .slide-content-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--blue-light);
+        }
+
+        /* Footer informatiu */
+        .slide-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--gray-light);
+        }
+
+        .slide-footer h3 {
+            color: var(--blue-light);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-footer .contact-info {
+            background: var(--gray-lightest);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+
+        /* Animacions */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive ajustaments */
+        @media (max-width: 1400px) {
+            .slide {
+                padding: 3rem 4rem;
             }
 
-            .slide {
-                padding: 1.5rem;
+            .main-title {
+                font-size: 4rem;
             }
 
             .company-name {
-                font-size: 2rem;
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid,
+            .nomina-comparison {
+                grid-template-columns: 1fr;
             }
 
-            .slide-header h1 {
-                font-size: 1.8rem;
+            .benefits-grid,
+            .content-grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
-    <div class="presentation-container">
-        <!-- Slide 1: Portada -->
-        <div class="slide">
-            <div class="logo-section">
-                <div class="company-name">Gelabert Castellví</div>
-                <div class="company-tagline">Assessors i Consultors</div>
-            </div>
-            <div class="slide-header">
-                <h1>Retribució Flexible</h1>
-                <p>Optimitza la teva nòmina i incrementa el teu poder adquisitiu</p>
-            </div>
-            <div style="text-align: center; margin-top: 3rem; color: var(--dark-gray); font-size: 1.1rem;">
-                <p><strong>Descobreix com pots augmentar el teu salari net sense cost addicional per a l'empresa</strong></p>
-            </div>
-        </div>
-
-        <!-- Slide 2: Què és la Retribució Flexible? -->
-        <div class="slide">
-            <div class="slide-header">
-                <h2>Què és la Retribució Flexible?</h2>
-            </div>
-            <div class="content-section">
-                <p style="font-size: 1.2rem; margin-bottom: 2rem; text-align: center; color: var(--dark-gray);">
-                    És un sistema que permet als treballadors destinar <strong>part del seu salari brut</strong> a pagar
-                    determinats serveis o productes amb <strong>avantatges fiscals</strong>, augmentant així el salari net.
-                </p>
-
-                <div class="highlight-box">
-                    <h4>🎯 Principi clau</h4>
-                    <p>En lloc de rebre tot el salari en diner, destines una part a conceptes que gaudeixen
-                    d'exempcions o reduccions fiscals, reduint la base de cotització de l'IRPF.</p>
+    <div class="presentation-wrapper">
+        <div class="slide-container">
+            <!-- Slide 1: Portada -->
+            <div class="slide active" id="slide1">
+                <div class="company-logo">
+                    <div class="company-name">Gelabert Castellví</div>
+                    <div class="company-tagline">Assessors i Consultors</div>
                 </div>
-
-                <div class="two-column">
-                    <div class="card">
-                        <h3>🎁 Avantatges per al treballador</h3>
-                        <ul>
-                            <li>Augmenta el salari net mensual</li>
-                            <li>Paga menys IRPF</li>
-                            <li>Accés a serveis amb descompte fiscal</li>
-                            <li>Millora el poder adquisitiu</li>
-                            <li>Flexibilitat i personalització</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>🏢 Avantatges per a l'empresa</h3>
-                        <ul>
-                            <li>Cost salarial neutre o reduït</li>
-                            <li>Eina de fidelització i retenció</li>
-                            <li>Millora del clima laboral</li>
-                            <li>Avantatge competitiu en captació</li>
-                            <li>Imatge d'empresa innovadora</li>
-                        </ul>
-                    </div>
+                <div class="main-title">Retribució Flexible</div>
+                <div class="subtitle">Optimitza la teva nòmina i incrementa el teu poder adquisitiu</div>
+                <div class="cta-subtitle">
+                    Descobreix com pots augmentar el teu salari net sense cost addicional per a l'empresa
                 </div>
             </div>
-        </div>
 
-        <!-- Slide 3: Conceptes més habituals -->
-        <div class="slide">
-            <div class="slide-header">
-                <h2>Conceptes més habituals en Retribució Flexible</h2>
-            </div>
-            <div class="content-section">
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🍽️</div>
-                        <h4>Targeta Restaurant</h4>
-                        <p>Fins a 11€/dia exempt d'IRPF</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🚗</div>
-                        <h4>Transport</h4>
-                        <p>Abonaments de transport públic</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">👶</div>
-                        <h4>Guarderia</h4>
-                        <p>Exempció completa d'IRPF</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">📚</div>
-                        <h4>Formació</h4>
-                        <p>Cursos i màsters exempts</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🏥</div>
-                        <h4>Assegurança Mèdica</h4>
-                        <p>Fins a 500€/any exempts</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">💻</div>
-                        <h4>Equipament</h4>
-                        <p>Ordinadors, tablets, mòbils</p>
-                    </div>
+            <!-- Slide 2: Què és? -->
+            <div class="slide" id="slide2">
+                <div class="slide-header">
+                    <h2>Què és la Retribució Flexible?</h2>
+                    <p>Un sistema intel·ligent per optimitzar el teu salari</p>
                 </div>
 
-                <table class="concepts-table">
-                    <thead>
-                        <tr>
-                            <th>Concepte</th>
-                            <th>Límit exempt d'IRPF</th>
-                            <th>Observacions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Targeta Restaurant</strong></td>
-                            <td>11€ per dia laboral</td>
-                            <td>Només dies efectius de treball</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Guarderia</strong></td>
-                            <td>100% exempt</td>
-                            <td>Centres autoritzats</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Transport públic</strong></td>
-                            <td>100% exempt</td>
-                            <td>Abonaments mensuals/anuals</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Formació</strong></td>
-                            <td>100% exempt</td>
-                            <td>Relacionada amb l'activitat</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Assegurança mèdica</strong></td>
-                            <td>500€ per persona/any</td>
-                            <td>Treballador, cònjuge i fills</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Slide 4: Comparació de Nòmines -->
-        <div class="slide">
-            <div class="slide-header">
-                <h2>Comparació: Nòmina Tradicional vs. Retribució Flexible</h2>
-                <p>Mateix salari brut, diferent salari net</p>
-            </div>
-            <div class="content-section">
-                <div class="nomina-comparison">
-                    <!-- Nòmina sense retribució flexible -->
-                    <div class="nomina-card without-flex">
-                        <div class="nomina-header">❌ SENSE Retribució Flexible</div>
-
-                        <div class="nomina-row header-row">
-                            <span>Concepte</span>
-                            <span>Import</span>
-                        </div>
-
-                        <div class="nomina-row salary-base">
-                            <span><strong>Salari Base</strong></span>
-                            <span><strong>2.500,00 €</strong></span>
-                        </div>
-
-                        <div class="nomina-row">
-                            <span>Plus transport</span>
-                            <span>100,00 €</span>
-                        </div>
-
-                        <div class="nomina-row">
-                            <span>Plus àpats</span>
-                            <span>200,00 €</span>
-                        </div>
-
-                        <div class="nomina-row header-row" style="margin-top: 1rem;">
-                            <span><strong>Salari Brut Total</strong></span>
-                            <span><strong>2.800,00 €</strong></span>
-                        </div>
-
-                        <div style="margin: 1rem 0; padding: 0.5rem; background: #fee2e2; border-radius: 5px;">
-                            <strong>Deduccions:</strong>
-                        </div>
-
-                        <div class="nomina-row deductions">
-                            <span>Contingències comunes (4,70%)</span>
-                            <span>-131,60 €</span>
-                        </div>
-
-                        <div class="nomina-row deductions">
-                            <span>Desocupació (1,55%)</span>
-                            <span>-43,40 €</span>
-                        </div>
-
-                        <div class="nomina-row deductions">
-                            <span>Formació (0,10%)</span>
-                            <span>-2,80 €</span>
-                        </div>
-
-                        <div class="nomina-row deductions">
-                            <span><strong>IRPF (18%)</strong></span>
-                            <span><strong>-504,00 €</strong></span>
-                        </div>
-
-                        <div class="nomina-row header-row" style="background: #fee2e2; color: #dc2626;">
-                            <span><strong>Total Deduccions</strong></span>
-                            <span><strong>-681,80 €</strong></span>
-                        </div>
-
-                        <div class="nomina-row total-row" style="background: #dc2626;">
-                            <span><strong>SALARI NET</strong></span>
-                            <span><strong>2.118,20 €</strong></span>
-                        </div>
+                <div class="slide-content-scroll">
+                    <div class="highlight-box">
+                        <h4>💡 Definició</h4>
+                        <p>És un sistema que permet als treballadors destinar <strong>part del seu salari brut</strong> a pagar determinats serveis o productes amb <strong>avantatges fiscals</strong>, augmentant així el salari net.</p>
                     </div>
 
-                    <!-- Nòmina amb retribució flexible -->
-                    <div class="nomina-card with-flex">
-                        <div class="nomina-header">✅ AMB Retribució Flexible</div>
-
-                        <div class="nomina-row header-row">
-                            <span>Concepte</span>
-                            <span>Import</span>
-                        </div>
-
-                        <div class="nomina-row salary-base">
-                            <span><strong>Salari Base</strong></span>
-                            <span><strong>2.500,00 €</strong></span>
-                        </div>
-
-                        <div class="nomina-row">
-                            <span>Salari en metàl·lic</span>
-                            <span>2.500,00 €</span>
-                        </div>
-
-                        <div class="nomina-row" style="background: #d1fae5;">
-                            <span>🍽️ Targeta restaurant (exempt)</span>
-                            <span>200,00 €</span>
-                        </div>
-
-                        <div class="nomina-row" style="background: #d1fae5;">
-                            <span>🚗 Transport (exempt)</span>
-                            <span>100,00 €</span>
-                        </div>
-
-                        <div class="nomina-row header-row" style="margin-top: 1rem;">
-                            <span><strong>Salari Brut Total</strong></span>
-                            <span><strong>2.800,00 €</strong></span>
-                        </div>
-
-                        <div style="margin: 1rem 0; padding: 0.5rem; background: #d1fae5; border-radius: 5px;">
-                            <strong>Deduccions (sobre 2.500€):</strong>
-                        </div>
-
-                        <div class="nomina-row">
-                            <span>Contingències comunes (4,70%)</span>
-                            <span>-117,50 €</span>
-                        </div>
-
-                        <div class="nomina-row">
-                            <span>Desocupació (1,55%)</span>
-                            <span>-38,75 €</span>
-                        </div>
-
-                        <div class="nomina-row">
-                            <span>Formació (0,10%)</span>
-                            <span>-2,50 €</span>
-                        </div>
-
-                        <div class="nomina-row" style="background: #d1fae5;">
-                            <span><strong>IRPF sobre 2.500€ (18%)</strong></span>
-                            <span><strong>-450,00 €</strong></span>
-                        </div>
-
-                        <div class="nomina-row header-row" style="background: #d1fae5; color: #059669;">
-                            <span><strong>Total Deduccions</strong></span>
-                            <span><strong>-608,75 €</strong></span>
-                        </div>
-
-                        <div class="nomina-row total-row" style="background: #10b981;">
-                            <span><strong>SALARI NET</strong></span>
-                            <span><strong>2.191,25 €</strong></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="savings-badge">
-                    💰 ESTALVI MENSUAL: 73,05 € | ESTALVI ANUAL: 876,60 €
-                </div>
-
-                <div class="highlight-box">
-                    <h4>📊 Anàlisi de la diferència</h4>
-                    <p><strong>Mateix salari brut (2.800€)</strong>, però amb retribució flexible:</p>
-                    <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-                        <li>✓ Els 300€ en conceptes exempts NO tributen a l'IRPF</li>
-                        <li>✓ Reduccions també en cotitzacions a la Seguretat Social</li>
-                        <li>✓ El treballador rep més diners nets cada mes</li>
-                        <li>✓ L'empresa manté el mateix cost salarial</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 5: Exemples pràctics -->
-        <div class="slide">
-            <div class="slide-header">
-                <h2>Exemples pràctics de configuració</h2>
-            </div>
-            <div class="content-section">
-                <div class="two-column">
-                    <div class="card">
-                        <h3>👨‍💼 Perfil 1: Professional jove</h3>
-                        <p style="margin-bottom: 1rem;"><strong>Salari brut:</strong> 30.000€/any</p>
-                        <ul>
-                            <li>Targeta restaurant: 2.200€/any</li>
-                            <li>Transport públic: 600€/any</li>
-                            <li>Formació: 1.200€/any</li>
-                        </ul>
-                        <div class="highlight-box" style="margin-top: 1rem;">
-                            <strong>Estalvi anual: ~1.200€</strong>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3>👨‍👩‍👧 Perfil 2: Família amb fills</h3>
-                        <p style="margin-bottom: 1rem;"><strong>Salari brut:</strong> 40.000€/any</p>
-                        <ul>
-                            <li>Targeta restaurant: 2.200€/any</li>
-                            <li>Guarderia: 4.800€/any</li>
-                            <li>Assegurança mèdica: 1.500€/any</li>
-                            <li>Transport: 600€/any</li>
-                        </ul>
-                        <div class="highlight-box" style="margin-top: 1rem;">
-                            <strong>Estalvi anual: ~2.800€</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 2rem; padding: 2rem; background: var(--light-gray); border-radius: 15px;">
-                    <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">🎯 Factors que influeixen en l'estalvi</h3>
-                    <div class="two-column">
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="padding: 0.5rem 0;">✓ Tram d'IRPF del treballador</li>
-                            <li style="padding: 0.5rem 0;">✓ Quantitat destinada a conceptes exempts</li>
-                            <li style="padding: 0.5rem 0;">✓ Tipus de conceptes triats</li>
-                        </ul>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="padding: 0.5rem 0;">✓ Situació familiar</li>
-                            <li style="padding: 0.5rem 0;">✓ Necessitats personals</li>
-                            <li style="padding: 0.5rem 0;">✓ Planificació fiscal</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 6: Com funciona el procés -->
-        <div class="slide">
-            <div class="slide-header">
-                <h2>Com implantar la Retribució Flexible?</h2>
-            </div>
-            <div class="content-section">
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0;">
-                    <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 10px;">
-                        <div style="font-size: 3rem; color: var(--secondary-blue); margin-bottom: 0.5rem;">1️⃣</div>
-                        <h4 style="color: var(--primary-blue);">Anàlisi</h4>
-                        <p>Estudiem el teu cas particular</p>
-                    </div>
-                    <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 10px;">
-                        <div style="font-size: 3rem; color: var(--secondary-blue); margin-bottom: 0.5rem;">2️⃣</div>
-                        <h4 style="color: var(--primary-blue);">Proposta</h4>
-                        <p>Simulació personalitzada</p>
-                    </div>
-                    <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 10px;">
-                        <div style="font-size: 3rem; color: var(--secondary-blue); margin-bottom: 0.5rem;">3️⃣</div>
-                        <h4 style="color: var(--primary-blue);">Implementació</h4>
-                        <p>Gestió completa del procés</p>
-                    </div>
-                    <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 10px;">
-                        <div style="font-size: 3rem; color: var(--secondary-blue); margin-bottom: 0.5rem;">4️⃣</div>
-                        <h4 style="color: var(--primary-blue);">Seguiment</h4>
-                        <p>Assessorament continu</p>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <h4>⚠️ Aspectes importants a considerar</h4>
-                    <ul style="margin-top: 1rem; margin-left: 1.5rem;">
-                        <li>La retribució flexible s'ha d'establir <strong>abans</strong> de devengar-se el salari</li>
-                        <li>Cal modificar el contracte laboral o signar un acord amb el treballador</li>
-                        <li>Els imports destinats han de respectar els límits legals d'exempció</li>
-                        <li>És un procés reversible i modificable anualment</li>
-                        <li>No afecta negativament a la base de cotització per a la pensió (en la majoria de casos)</li>
-                    </ul>
-                </div>
-
-                <div style="margin-top: 2rem;">
-                    <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">✅ Requisits</h3>
-                    <div class="two-column">
+                    <div class="content-grid">
                         <div class="card">
-                            <h4>Per a l'empresa:</h4>
+                            <h3>✨ Avantatges per al treballador</h3>
+                            <ul>
+                                <li>Augmenta el salari net mensual</li>
+                                <li>Paga menys IRPF</li>
+                                <li>Accés a serveis amb descompte fiscal</li>
+                                <li>Millora el poder adquisitiu</li>
+                                <li>Flexibilitat i personalització</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>🏢 Avantatges per a l'empresa</h3>
+                            <ul>
+                                <li>Cost salarial neutre o reduït</li>
+                                <li>Eina de fidelització i retenció</li>
+                                <li>Millora del clima laboral</li>
+                                <li>Avantatge competitiu en captació</li>
+                                <li>Imatge d'empresa innovadora</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4>🎯 Principi clau</h4>
+                        <p>En lloc de rebre tot el salari en diner, destines una part a conceptes que gaudeixen d'exempcions o reduccions fiscals, reduint la base de cotització de l'IRPF.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Conceptes -->
+            <div class="slide" id="slide3">
+                <div class="slide-header">
+                    <h2>Conceptes habituals en Retribució Flexible</h2>
+                    <p>Els productes i serveis més utilitzats</p>
+                </div>
+
+                <div class="slide-content-scroll">
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🍽️</div>
+                            <h4>Targeta Restaurant</h4>
+                            <p>Fins a 11€/dia exempt d'IRPF</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🚗</div>
+                            <h4>Transport</h4>
+                            <p>Abonaments de transport públic</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">👶</div>
+                            <h4>Guarderia</h4>
+                            <p>Exempció completa d'IRPF</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">📚</div>
+                            <h4>Formació</h4>
+                            <p>Cursos i màsters exempts</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🏥</div>
+                            <h4>Assegurança Mèdica</h4>
+                            <p>Fins a 500€/any exempts</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💻</div>
+                            <h4>Equipament</h4>
+                            <p>Ordinadors, tablets, mòbils</p>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Concepte</th>
+                                    <th>Límit exempt d'IRPF</th>
+                                    <th>Observacions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Targeta Restaurant</strong></td>
+                                    <td>11€ per dia laboral</td>
+                                    <td>Només dies efectius de treball</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Guarderia</strong></td>
+                                    <td>100% exempt</td>
+                                    <td>Centres autoritzats</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Transport públic</strong></td>
+                                    <td>100% exempt</td>
+                                    <td>Abonaments mensuals/anuals</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Formació</strong></td>
+                                    <td>100% exempt</td>
+                                    <td>Relacionada amb l'activitat</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Assegurança mèdica</strong></td>
+                                    <td>500€ per persona/any</td>
+                                    <td>Treballador, cònjuge i fills</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Comparació Nòmines -->
+            <div class="slide" id="slide4">
+                <div class="slide-header">
+                    <h2>Comparació de Nòmines</h2>
+                    <p>Mateix salari brut, diferent salari net</p>
+                </div>
+
+                <div class="slide-content-scroll">
+                    <div class="nomina-comparison">
+                        <!-- Nòmina SENSE retribució flexible -->
+                        <div class="nomina-card bad">
+                            <div class="nomina-header-card">❌ SENSE Retribució Flexible</div>
+
+                            <div class="nomina-row highlight">
+                                <span><strong>Salari Base</strong></span>
+                                <span><strong>2.500,00 €</strong></span>
+                            </div>
+                            <div class="nomina-row">
+                                <span>Plus transport</span>
+                                <span>100,00 €</span>
+                            </div>
+                            <div class="nomina-row">
+                                <span>Plus àpats</span>
+                                <span>200,00 €</span>
+                            </div>
+                            <div class="nomina-row highlight">
+                                <span><strong>Salari Brut Total</strong></span>
+                                <span><strong>2.800,00 €</strong></span>
+                            </div>
+
+                            <div style="margin: 1.5rem 0; padding: 1rem; background: #fee2e2; border-radius: 10px; text-align: center;">
+                                <strong>Deduccions sobre 2.800€</strong>
+                            </div>
+
+                            <div class="nomina-row deduction">
+                                <span>Contingències comunes (4,70%)</span>
+                                <span>-131,60 €</span>
+                            </div>
+                            <div class="nomina-row deduction">
+                                <span>Desocupació (1,55%)</span>
+                                <span>-43,40 €</span>
+                            </div>
+                            <div class="nomina-row deduction">
+                                <span>Formació (0,10%)</span>
+                                <span>-2,80 €</span>
+                            </div>
+                            <div class="nomina-row deduction">
+                                <span><strong>IRPF (18%)</strong></span>
+                                <span><strong>-504,00 €</strong></span>
+                            </div>
+                            <div class="nomina-row total">
+                                <span><strong>SALARI NET</strong></span>
+                                <span><strong>2.118,20 €</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Nòmina AMB retribució flexible -->
+                        <div class="nomina-card good">
+                            <div class="nomina-header-card">✅ AMB Retribució Flexible</div>
+
+                            <div class="nomina-row highlight">
+                                <span><strong>Salari Base</strong></span>
+                                <span><strong>2.500,00 €</strong></span>
+                            </div>
+                            <div class="nomina-row">
+                                <span>Salari en metàl·lic</span>
+                                <span>2.500,00 €</span>
+                            </div>
+                            <div class="nomina-row exempt">
+                                <span>🍽️ Targeta restaurant (exempt)</span>
+                                <span>200,00 €</span>
+                            </div>
+                            <div class="nomina-row exempt">
+                                <span>🚗 Transport (exempt)</span>
+                                <span>100,00 €</span>
+                            </div>
+                            <div class="nomina-row highlight">
+                                <span><strong>Salari Brut Total</strong></span>
+                                <span><strong>2.800,00 €</strong></span>
+                            </div>
+
+                            <div style="margin: 1.5rem 0; padding: 1rem; background: #d1fae5; border-radius: 10px; text-align: center;">
+                                <strong>Deduccions només sobre 2.500€</strong>
+                            </div>
+
+                            <div class="nomina-row">
+                                <span>Contingències comunes (4,70%)</span>
+                                <span>-117,50 €</span>
+                            </div>
+                            <div class="nomina-row">
+                                <span>Desocupació (1,55%)</span>
+                                <span>-38,75 €</span>
+                            </div>
+                            <div class="nomina-row">
+                                <span>Formació (0,10%)</span>
+                                <span>-2,50 €</span>
+                            </div>
+                            <div class="nomina-row">
+                                <span><strong>IRPF (18%)</strong></span>
+                                <span><strong>-450,00 €</strong></span>
+                            </div>
+                            <div class="nomina-row total">
+                                <span><strong>SALARI NET</strong></span>
+                                <span><strong>2.191,25 €</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="savings-banner">
+                        💰 ESTALVI MENSUAL: 73,05 € | ESTALVI ANUAL: 876,60 €
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4>📊 Anàlisi de la diferència</h4>
+                        <p><strong>Mateix salari brut (2.800€)</strong>, però amb retribució flexible els 300€ en conceptes exempts NO tributen a l'IRPF ni a la Seguretat Social completa, augmentant el salari net.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Exemples pràctics -->
+            <div class="slide" id="slide5">
+                <div class="slide-header">
+                    <h2>Exemples pràctics de configuració</h2>
+                    <p>Casos reals adaptats a diferents perfils</p>
+                </div>
+
+                <div class="slide-content-scroll">
+                    <div class="content-grid">
+                        <div class="card">
+                            <h3>👨‍💼 Professional jove</h3>
+                            <p style="margin-bottom: 1.5rem; font-size: 1.2rem;"><strong>Salari brut:</strong> 30.000€/any</p>
+                            <ul>
+                                <li>Targeta restaurant: 2.200€/any</li>
+                                <li>Transport públic: 600€/any</li>
+                                <li>Formació: 1.200€/any</li>
+                            </ul>
+                            <div class="highlight-box" style="margin-top: 1.5rem;">
+                                <h4>💰 Estalvi anual: ~1.200€</h4>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>👨‍👩‍👧 Família amb fills</h3>
+                            <p style="margin-bottom: 1.5rem; font-size: 1.2rem;"><strong>Salari brut:</strong> 40.000€/any</p>
+                            <ul>
+                                <li>Targeta restaurant: 2.200€/any</li>
+                                <li>Guarderia: 4.800€/any</li>
+                                <li>Assegurança mèdica: 1.500€/any</li>
+                                <li>Transport: 600€/any</li>
+                            </ul>
+                            <div class="highlight-box" style="margin-top: 1.5rem;">
+                                <h4>💰 Estalvi anual: ~2.800€</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 2rem;">
+                        <h3>🎯 Factors que influeixen en l'estalvi</h3>
+                        <div class="content-grid">
+                            <ul>
+                                <li>Tram d'IRPF del treballador</li>
+                                <li>Quantitat destinada a conceptes exempts</li>
+                                <li>Tipus de conceptes triats</li>
+                            </ul>
+                            <ul>
+                                <li>Situació familiar</li>
+                                <li>Necessitats personals</li>
+                                <li>Planificació fiscal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Com implantar -->
+            <div class="slide" id="slide6">
+                <div class="slide-header">
+                    <h2>Com implantar la Retribució Flexible?</h2>
+                    <p>Un procés senzill en 4 passos</p>
+                </div>
+
+                <div class="slide-content-scroll">
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <h4>Anàlisi</h4>
+                            <p>Estudiem el teu cas particular i necessitats</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <h4>Proposta</h4>
+                            <p>Simulació personalitzada amb els teus números</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <h4>Implementació</h4>
+                            <p>Gestió completa del procés legal i administratiu</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <h4>Seguiment</h4>
+                            <p>Assessorament continu i optimització</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4>⚠️ Aspectes importants a considerar</h4>
+                        <ul style="margin-top: 1rem; margin-left: 2rem; line-height: 2;">
+                            <li>La retribució flexible s'ha d'establir <strong>abans</strong> de devengar-se el salari</li>
+                            <li>Cal modificar el contracte laboral o signar un acord amb el treballador</li>
+                            <li>Els imports destinats han de respectar els límits legals d'exempció</li>
+                            <li>És un procés reversible i modificable anualment</li>
+                            <li>No afecta negativament a la base de cotització per a la pensió (en la majoria de casos)</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-grid" style="margin-top: 2rem;">
+                        <div class="card">
+                            <h3>✅ Per a l'empresa</h3>
                             <ul>
                                 <li>Alta en plataforma de gestió</li>
                                 <li>Acord amb treballadors</li>
@@ -777,7 +1047,7 @@
                             </ul>
                         </div>
                         <div class="card">
-                            <h4>Per al treballador:</h4>
+                            <h3>✅ Per al treballador</h3>
                             <ul>
                                 <li>Signatura d'acord individual</li>
                                 <li>Elecció de conceptes</li>
@@ -787,75 +1057,121 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Slide 7: CTA Final -->
-        <div class="slide">
-            <div class="cta-section">
-                <h2>Comença a estalviar des d'avui</h2>
-                <p style="font-size: 1.2rem; margin: 1.5rem 0;">
-                    A <strong>Gelabert Castellví Assessors</strong> t'ajudem a implementar
-                    la retribució flexible de manera senzilla i eficaç
-                </p>
-                <div style="margin: 2rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center;">
-                    <div>
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📞</div>
-                        <strong>Contacta'ns</strong>
-                        <p style="font-size: 0.9rem; opacity: 0.9;">T'expliquem tot sense compromís</p>
+            <!-- Slide 7: CTA -->
+            <div class="slide" id="slide7">
+                <div class="slide-header">
+                    <h2>Comença a estalviar des d'avui</h2>
+                </div>
+
+                <div class="slide-content-scroll">
+                    <div class="cta-section">
+                        <p style="font-size: 1.5rem; margin-bottom: 2rem;">
+                            A <strong>Gelabert Castellví Assessors</strong> t'ajudem a implementar la retribució flexible de manera senzilla i eficaç
+                        </p>
+
+                        <div class="cta-grid">
+                            <div class="cta-item">
+                                <div class="cta-item-icon">📞</div>
+                                <strong>Contacta'ns</strong>
+                                <p>T'expliquem tot sense compromís</p>
+                            </div>
+                            <div class="cta-item">
+                                <div class="cta-item-icon">📊</div>
+                                <strong>Simulació gratuïta</strong>
+                                <p>Calcula el teu estalvi personalitzat</p>
+                            </div>
+                            <div class="cta-item">
+                                <div class="cta-item-icon">🚀</div>
+                                <strong>Implementació ràpida</strong>
+                                <p>Operatiu en menys d'un mes</p>
+                            </div>
+                        </div>
+
+                        <a href="#" class="cta-button">Sol·licita informació</a>
                     </div>
-                    <div>
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
-                        <strong>Simulació gratuïta</strong>
-                        <p style="font-size: 0.9rem; opacity: 0.9;">Calcula el teu estalvi personalitzat</p>
-                    </div>
-                    <div>
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚀</div>
-                        <strong>Implementació ràpida</strong>
-                        <p style="font-size: 0.9rem; opacity: 0.9;">Operatiu en menys d'un mes</p>
+
+                    <div class="slide-footer">
+                        <h3>Gelabert Castellví Assessors</h3>
+                        <p style="font-size: 1.3rem; color: var(--text-medium); margin-bottom: 1rem;">
+                            <strong>Experts en optimització fiscal i laboral</strong><br>
+                            El teu assessor de confiança
+                        </p>
+                        <div class="contact-info">
+                            <p style="font-size: 1.1rem; line-height: 2; color: var(--text-dark);">
+                                📧 info@gelabertcastellvi.com | 📞 93 XXX XX XX<br>
+                                📍 Barcelona | Amb més de 20 anys d'experiència
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <a href="#" class="cta-button">Sol·licita informació</a>
             </div>
 
-            <div style="margin-top: 3rem; text-align: center; color: var(--dark-gray);">
-                <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Gelabert Castellví Assessors</h3>
-                <p style="font-size: 1.1rem;">
-                    <strong>Experts en optimització fiscal i laboral</strong><br>
-                    El teu assessor de confiança
-                </p>
-                <div style="margin-top: 2rem; padding: 2rem; background: var(--light-gray); border-radius: 15px;">
-                    <p style="font-size: 0.95rem; line-height: 1.8;">
-                        📧 info@gelabertcastellvi.com | 📞 93 XXX XX XX<br>
-                        📍 Barcelona | Amb més de 20 anys d'experiència
-                    </p>
-                </div>
+            <!-- Controls de navegació -->
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">←</button>
+                <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">→</button>
             </div>
+
+            <!-- Indicadors -->
+            <div class="slide-indicators" id="indicators"></div>
         </div>
     </div>
 
     <script>
-        // Animació suau en fer scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const indicatorsContainer = document.getElementById('indicators');
 
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
+        // Crear indicadors
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator' + (i === 0 ? ' active' : '');
+            indicator.onclick = () => goToSlide(i);
+            indicatorsContainer.appendChild(indicator);
+        }
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            slides.forEach(slide => {
-                observer.observe(slide);
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
             });
+
+            // Actualitzar indicadors
+            document.querySelectorAll('.indicator').forEach((ind, index) => {
+                ind.classList.toggle('active', index === currentSlide);
+            });
+
+            // Actualitzar botons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            updateSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        // Navegació amb teclat
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
         });
+
+        // Inicialitzar
+        updateSlide();
     </script>
 </body>
 </html>
